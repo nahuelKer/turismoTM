@@ -1,0 +1,4 @@
+Eowyn, 10, 8, Aventura
+Gandalf, 100, 8, Paisajes
+Sam, 36, 8, Banquetes
+Galadriel, 12, 6, Paseos
