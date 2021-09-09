@@ -16,14 +16,15 @@ public class Sistema {
 		
 		ArrayList<Atraccion> atracciones = Atraccion.getAtracciones("atracciones.txt");
 		
-		ArrayList<Atraccion> atraccionesPreferidas = (ArrayList<Atraccion>) Atraccion.getAtraccionesPreferidas(atracciones, atraPref);
+		Atraccion.ordenarListaPorTipo(atracciones);
 		
-		Iterator<Atraccion> itr1 = atraccionesPreferidas.iterator();
+		//ArrayList<Atraccion> atraccionesPreferidas = (ArrayList<Atraccion>) Atraccion.getAtraccionesPreferidas(atracciones, atraPref);
+		
+		Iterator<Atraccion> itr1 = atracciones.iterator();
 		while(itr1.hasNext()) {
 			System.out.println(itr1.next());
 		}
 		
-		System.out.println(atraccionesPreferidas.size());
 		
 		/*Atraccion.ordenarListaPorPrecio(atraccionesPreferidas);
 		

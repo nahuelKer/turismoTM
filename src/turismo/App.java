@@ -20,16 +20,15 @@ public class App {
 		ArrayList<Atraccion> atracciones = Atraccion.getAtracciones("atracciones.txt");
 		
 		//SEGUNDO: Inicializo un ArrayList "itinerario" donde se va a ir almacenando las elecciones del usuario
-		List<Atraccion> itinerario = new ArrayList<Atraccion>();
 		
-		// TERCERO: Empiezo con las sugerencias
-		for (int i = 0; i < turistas.size(); i++) {
-
-			/*
+		
+		// SEGUNDO: Empiezo con las sugerencias
+		for (Usuario turista : turistas) {
+			/* 
 			 * Guardo en una variable String la preferencia del usuario para pasarla por
 			 * parametro al getAtraccionesPreferidas
 			 */
-			String preferenciasUsuario = turistas.get(i).getAtraccionPreferida();
+			String preferenciasUsuario = turista.getAtraccionPreferida();
 
 			/*
 			 * Filtro "atracciones" y obtengo una nueva lista SOLO con las atracciones
@@ -41,11 +40,6 @@ public class App {
 			/*Ordeno la lista atraccionesPreferidas por precio (de la mas cara a la mas barata)*/
 			Atraccion.ordenarListaPorPrecio(atraccionesPreferidas);
 
-			/*
-			 * Inicializo una nueva promocion porcentual p1 pasandole por parametro las 2
-			 * primeras atracciones mas caras del ArrayList "atraccionesPreferidas"
-			 */
-
 			Scanner entrada = new Scanner(new InputStreamReader(System.in));
 			System.out.println("Esta interesado en la siguiente promocion?");
 			System.out.println("Pack " + preferenciasUsuario + ": " + atraccionesPreferidas.get(0).getNombreAtraccion()
@@ -53,24 +47,33 @@ public class App {
 					+ "con un 20% de descuento con la compra de ambas.");
 			String opcion = entrada.nextLine();
 			if (opcion.equals("si")) {
+				
+				/*
+				 * Inicializo una nueva promocion porcentual p1 pasandole por parametro las 2
+				 * primeras atracciones mas caras del ArrayList "atraccionesPreferidas"
+				 */
 
 				PromocionPorcentual p1 = new PromocionPorcentual(atraccionesPreferidas.subList(1, 3));
 				
-				System.out.println("Enhorabuena! Usted ha adquirido el Pack" + " " + preferenciasUsuario + " " + "por $" + p1.ofrecerPromocion(turistas.get(i), 20));
-
+				System.out.println("Enhorabuena! Usted ha adquirido el Pack" + " " + preferenciasUsuario + " " + "por $" + p1.ofrecerPromocion(turista, 20));
+				
+				//Modifico el atributo "cupo" de las atracciones a medida que son ocupadas
 				atraccionesPreferidas.get(0).ocuparAtraccion();
 
 				atraccionesPreferidas.get(1).ocuparAtraccion();
 
-				itinerario.add(atraccionesPreferidas.get(1));
-				itinerario.add(atraccionesPreferidas.get(2));
 				
-				Iterator<Atraccion> itr1 = itinerario.iterator();
-				while(itr1.hasNext()) {
-					System.out.println(itr1.next());
-				}
+				//Agrego las atracciones al itinerario del usuario
+				turista.getAdquisiciones().add(p1);
 				
-				//Ver como descontar del presupuesto
+				double costoPaquete = atraccionesPreferidas.get(0).getCosto() + atraccionesPreferidas.get(1).getCosto();
+				double tiempoPaquete = atraccionesPreferidas.get(0).getTiempoPromedio() + atraccionesPreferidas.get(1).getTiempoPromedio();
+				
+				//FIXME Ver que al descontar no exceda el presupuesto ni el tiempo (en teoria ya lo veo antes)
+				
+				turista.setAtributos(costoPaquete, tiempoPaquete);
+				
+				//FIXME metodo contains
 				
 				
 
@@ -78,7 +81,10 @@ public class App {
 				System.out.println("Esta interesado en la siguiente promocion?");
 				System.out.println("Pack " + ": " + atraccionesPreferidas.get(0).getNombreAtraccion()
 						+ " " + "y " + atraccionesPreferidas.get(1).getNombreAtraccion() + " "
-						+ "con un 20% de descuento con la compra de ambas.");
+						+ "con un descuento de 30 monedas con la compra de ambas.");
+				
+				
+				
 				if(opcion.equals("si")) {
 					System.out.println("imprimime");
 				}

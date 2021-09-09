@@ -26,4 +26,5 @@ public class PromocionAxB extends Promocion {
 	
 }
 
+
 }

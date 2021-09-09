@@ -2,7 +2,7 @@ package turismo;
 
 import java.util.List;
 
-public abstract class Promocion {
+public abstract class Promocion implements Adquirible {
 	
 	List<Atraccion> atracciones;
 	protected double costoPromo;
@@ -12,6 +12,6 @@ public abstract class Promocion {
 		
 	}
 	
-	//Hacer un metodo "ARMAR PROMO?" que extienda de atraccion?
+	//FIXME Ver que onda no salgan atracciones con diferente tipo
 
 }

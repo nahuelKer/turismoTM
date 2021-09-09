@@ -26,5 +26,4 @@ public class PromocionPorcentual extends Promocion {
 	
 }
 
-
 }

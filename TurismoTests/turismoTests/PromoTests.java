@@ -95,8 +95,9 @@ public class PromoTests {
 		
 		atraccionesPromocion.add(atraccion1);
 		atraccionesPromocion.add(atraccion2);
-		
+
 		PromocionPorcentual promo = new PromocionPorcentual(atraccionesPromocion);
+		
 		
 		System.out.println(promo.ofrecerPromocion(turista, 20));
 	

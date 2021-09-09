@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class Atraccion {
+public class Atraccion implements Adquirible{
 
 	private String nombre;
 	private int costo;
@@ -117,7 +117,7 @@ public class Atraccion {
 	}
 	
 	public static void ordenarListaPorPrecio(List<Atraccion> atraccion) {
-		Collections.sort(atraccion, new PrecioComparator());
+		Collections.sort(atraccion, new PrecioComparator().reversed());
 	}
 	
 	public static void ordenarListaPorTipo(List<Atraccion> atraccion) {

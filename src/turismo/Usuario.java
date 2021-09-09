@@ -2,13 +2,14 @@ package turismo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Usuario {
 	
+	private List<Adquirible> adquisiciones = new ArrayList<Adquirible>();
 	private String nombre;
 	private double presupuesto;
 	private double tiempoDisponible;
@@ -99,7 +100,15 @@ public class Usuario {
 			
 			return turistas;
 	}
-	
+
+	public void setAtributos(double valor1, double valor2) {
+		this.presupuesto -= valor1;
+		this.tiempoDisponible -= valor2;
+	}
+
+	public List<Adquirible> getAdquisiciones() {
+		return adquisiciones;
+	}
 	
 
 }
